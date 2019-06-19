@@ -1,0 +1,131 @@
+def rotateBodyClockwise(h):
+  if h == 0:
+    return
+  elif h == 1:
+    moveServo(fr2, 1, 30)
+    moveServo(fr3, 1, 30)
+    time.sleep(.125)
+    moveServo(fr1, -1, 30)
+    time.sleep(.15)
+    moveServo(fr2, 1, 0)
+    moveServo(fr3, 1, 0)
+
+    moveServo(bl2, 1, 30)
+    moveServo(bl3, 1, 30)
+    time.sleep(.125)
+    moveServo(bl1, 1, 30)
+    time.sleep(.15)
+    moveServo(bl2, 1, 0)
+    moveServo(bl3, 1, 0)
+
+    moveServo(br2, 1, 30)
+    moveServo(br3, 1, 30)
+    time.sleep(.125)
+    moveServo(br1, -1, 30)
+    time.sleep(.15)
+    moveServo(br2, 1, 0)
+    moveServo(br3, 1, 0)
+
+    moveServo(fl2, 1, 30)
+    moveServo(fl3, 1, 30)
+    time.sleep(.125)
+    moveServo(fl1, 1, 30)
+    time.sleep(.15)
+    moveServo(fl2, 1, 0)
+    moveServo(fl3, 1, 0)
+    
+    time.sleep(.125)
+    moveServo(fr1, 1, 0)
+    moveServo(br1, 1, 0)
+    moveServo(bl1, 1, 0)
+    moveServo(fl1, 1, 0)
+    time.sleep(.125)
+  
+  elif h == 2:
+    return
+
+def rotateBodyCounterClockwise(h):
+  if h == 0:
+    return
+  elif h == 1:
+    moveServo(fl2, 1, 30)
+    moveServo(fl3, 1, 30)
+    time.sleep(.125)
+    moveServo(fl1, -1, 30)
+    time.sleep(.15)
+    moveServo(fl2, 1, 0)
+    moveServo(fl3, 1, 0)
+
+    moveServo(br2, 1, 30)
+    moveServo(br3, 1, 30)
+    time.sleep(.125)
+    moveServo(br1, 1, 30)
+    time.sleep(.15)
+    moveServo(br2, 1, 0)
+    moveServo(br3, 1, 0)
+
+    moveServo(bl2, 1, 30)
+    moveServo(bl3, 1, 30)
+    time.sleep(.125)
+    moveServo(bl1, -1, 30)
+    time.sleep(.15)
+    moveServo(bl2, 1, 0)
+    moveServo(bl3, 1, 0)
+
+    moveServo(fr2, 1, 30)
+    moveServo(fr3, 1, 30)
+    time.sleep(.125)
+    moveServo(fr1, 1, 30)
+    time.sleep(.15)
+    moveServo(fr2, 1, 0)
+    moveServo(fr3, 1, 0)
+    
+    time.sleep(.125)
+    moveServo(fl1, 1, 0)
+    moveServo(bl1, 1, 0)
+    moveServo(br1, 1, 0)
+    moveServo(fr1, 1, 0)
+    time.sleep(.125)
+
+  elif h == 2:
+    return
+
+### OLD MOVEMENT ###
+moveServo(fl2, 1, 30)
+moveServo(fl3, 1, 30)
+time.sleep(.125)
+moveServo(fl1, 1, 30)
+time.sleep(.15)
+moveServo(fl2, 1, 0)
+moveServo(fl3, 1, 0)
+
+moveServo(br2, 1, 30)
+moveServo(br3, 1, 30)
+time.sleep(.125)
+moveServo(br1, 1, 30)
+time.sleep(.15)
+moveServo(br2, 1, 0)
+moveServo(br3, 1, 0)
+
+moveServo(bl2, 1, 30)
+moveServo(bl3, 1, 30)
+time.sleep(.125)
+moveServo(bl1, 1, 30)
+time.sleep(.15)
+moveServo(bl2, 1, 0)
+moveServo(bl3, 1, 0)
+
+moveServo(fr2, 1, 30)
+moveServo(fr3, 1, 30)
+time.sleep(.125)
+moveServo(fr1, 1, 30)
+time.sleep(.15)
+moveServo(fr2, 1, 0)
+moveServo(fr3, 1, 0)
+
+time.sleep(.125)
+moveServo(fl1, 1, 0)
+moveServo(br1, 1, 0)
+moveServo(bl1, 1, 0)
+moveServo(fr1, 1, 0)
+time.sleep(.125)
