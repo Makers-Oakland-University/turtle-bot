@@ -7,9 +7,6 @@ from config import pwm, joy
 from config import height, mode
 from config import heightDirections, heightAngles
 from config import frontLeftLeg, frontRightLeg, backLeftLeg, backRightLeg
-# from config import fl1, fl2, fl3, bl1, bl2, bl3, br1, br2, br3, fr1, fr2, fr3
-# from config import servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8, servo9, servo10, servo11, servo12
-# from config import servo
 
 
 def fmtFloat(n):
