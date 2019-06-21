@@ -1,3 +1,5 @@
+import time
+
 from config import pwm, joy
 from turtle_bot import moveServo
 
@@ -39,6 +41,18 @@ class Leg:
             if moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
                 self.wristAngle = wristAngle
 
+    def move(self, shoulderAngle, elbowAngle, wristAngle, sleepTime):
+        if (shoulderAngle != "current"):
+            if moveServo(self.shoulderServoNumber, self.shoulderAngles[90 + shoulderAngle]):
+                self.shoulderAngle = shoulderAngle
+        if (elbowAngle != "current"):
+            if moveServo(self.elbowServoNumber, self.elbowAngles[90 + elbowAngle]):
+                self.elbowAngle = elbowAngle
+        if (wristAngle != "current"):
+            if moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
+                self.wristAngle = wristAngle
+        time.sleep(sleepTime)
+
     def fillDefaultArray(self, currArray):
         for x in range(0, 181):
             if x == 0:
@@ -71,9 +85,9 @@ class Leg:
                 currArray.append(0)
 
     def tweekValue(self, jointNumber, angle, newValue):
-        if jointNumber == shoulderPos:
+        if jointNumber == self.shoulderPos:
             self.shoulderAngles[angle] = newValue
-        elif jointNumber == elbowPos:
+        elif jointNumber == self.elbowPos:
             self.elbowAngles[angle] = newValue
-        elif jointNumber == wristPos:
+        elif jointNumber == self.wristPos:
             self.wristAngles[angle] = newValue
