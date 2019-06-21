@@ -1,25 +1,26 @@
 import time
 
-from config import pwm, joy
-from turtle_bot import moveServo
+import config
 
 shoulderPos = 1
 elbowPos = 2
 wristPos = 3
 
 class Leg:
-    def __init__(self, shoulderServoNumber, elbowServoNumber, wristServoNumber, rightSideOfBody):
+    def __init__(self, shoulderServoNumber, elbowServoNumber, wristServoNumber, leftSideOfBody):
         self.shoulderAngles = []
         self.elbowAngles = []
         self.wristAngles = []
-        fillDefaultArray(self.shoulderAngles)
-        fillDefaultArray(self.elbowAngles)
-        fillDefaultArray(self.wristAngles)
-        if rightSideOfBody == False:
-            self.shoulderAngles = shoulderAngles[::-1]
-        elif rightSideOfBody == True:
-            self.elbowAngles = elbowAngles[::-1]
-            self.wristAngles = wristAngles[::-1]
+        self.fillDefaultArray(self.shoulderAngles)
+        self.fillDefaultArray(self.elbowAngles)
+        self.fillDefaultArray(self.wristAngles)
+        if leftSideOfBody:
+            self.shoulderAngles = self.shoulderAngles[::-1]
+            self.elbowAngles = self.elbowAngles[::-1]
+            self.wristAngles = self.wristAngles[::-1]
+        #elif rightSideOfBody == True:
+            #self.elbowAngles = self.elbowAngles[::-1]
+            #self.wristAngles = self.wristAngles[::-1]
 
         self.shoulderServoNumber = shoulderServoNumber
         self.elbowServoNumber = elbowServoNumber
@@ -28,28 +29,17 @@ class Leg:
         self.shoulderAngle = 0
         self.elbowAngle = 0
         self.wristAngle = 0
-        self.rightSideOfBody = rightSideOfBody
-
-    def move(self, shoulderAngle, elbowAngle, wristAngle):
-        if (shoulderAngle != "current"):
-            if moveServo(self.shoulderServoNumber, self.shoulderAngles[90 + shoulderAngle]):
-                self.shoulderAngle = shoulderAngle
-        if (elbowAngle != "current"):
-            if moveServo(self.elbowServoNumber, self.elbowAngles[90 + elbowAngle]):
-                self.elbowAngle = elbowAngle
-        if (wristAngle != "current"):
-            if moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
-                self.wristAngle = wristAngle
+        self.leftSideOfBody = leftSideOfBody
 
     def move(self, shoulderAngle, elbowAngle, wristAngle, sleepTime):
         if (shoulderAngle != "current"):
-            if moveServo(self.shoulderServoNumber, self.shoulderAngles[90 + shoulderAngle]):
+            if config.moveServo(self.shoulderServoNumber, self.shoulderAngles[90 + shoulderAngle]):
                 self.shoulderAngle = shoulderAngle
         if (elbowAngle != "current"):
-            if moveServo(self.elbowServoNumber, self.elbowAngles[90 + elbowAngle]):
+            if config.moveServo(self.elbowServoNumber, self.elbowAngles[90 + elbowAngle]):
                 self.elbowAngle = elbowAngle
         if (wristAngle != "current"):
-            if moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
+            if config.moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
                 self.wristAngle = wristAngle
         time.sleep(sleepTime)
 
@@ -85,9 +75,9 @@ class Leg:
                 currArray.append(0)
 
     def tweekValue(self, jointNumber, angle, newValue):
-        if jointNumber == self.shoulderPos:
+        if jointNumber == shoulderPos:
             self.shoulderAngles[angle] = newValue
-        elif jointNumber == self.elbowPos:
+        elif jointNumber == elbowPos:
             self.elbowAngles[angle] = newValue
-        elif jointNumber == self.wristPos:
+        elif jointNumber == wristPos:
             self.wristAngles[angle] = newValue

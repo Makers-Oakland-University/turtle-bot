@@ -42,25 +42,32 @@ fr3 = 11
 heightDirections = [1, 1, -1]
 heightAngles = [30, 0, 90]
 
-frontLeftLeg = Leg(fl1, fl2, fl3, False)
-frontRightLeg = Leg(fr1, fr2, fr3, True)
-backLeftLeg = Leg(bl1, bl2, bl3, False)
-backRightLeg = Leg(br1, br2, br3, True)
+frontLeftLeg = Leg(fl1, fl2, fl3, True)
+frontRightLeg = Leg(fr1, fr2, fr3, False)
+backLeftLeg = Leg(bl1, bl2, bl3, True)
+backRightLeg = Leg(br1, br2, br3, False)
 
 
 def init():
-    tweekValues()
+    print "Test"
+    #tweekValues()
 
-def tweekValues():
-    frontLeftLeg.tweekValue(2, 180, 640)
-    frontRightLeg.tweekValue(2, 180, 675)
-    backRightLeg.tweekValue(2, 180, 680)
+#def tweekValues():
+    #frontLeftLeg.tweekValue(2, 180, 640)
+    #frontRightLeg.tweekValue(2, 180, 675)
+    #backRightLeg.tweekValue(2, 180, 680)
 
-    frontLeftLeg.tweekValue(3, 180, 640)
-    frontRightLeg.tweekValue(3, 180, 640)
-    frontRightLeg.tweekValue(3, 30, 255)
+    #frontLeftLeg.tweekValue(3, 180, 640)
+    #frontRightLeg.tweekValue(3, 180, 640)
+    #frontRightLeg.tweekValue(3, 30, 255)
 
-    backLeftLeg.tweekValue(3, 180, 600)
-    backLeftLeg.tweekValue(3, 150, 475)
+    #backLeftLeg.tweekValue(3, 180, 600)
+    #backLeftLeg.tweekValue(3, 150, 475)
 
     #servo[bl3] = servo[bl3][::-1]
+
+def moveServo(servoNumber, degreeValue):
+    if degreeValue == 0:  # Exits function if the degree value is not valid
+        return False
+    pwm.setPWM(servoNumber, 0, degreeValue)
+    return True

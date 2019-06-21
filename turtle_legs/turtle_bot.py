@@ -21,11 +21,7 @@ def findLeftRegion():
     print(mode)
     time.sleep(.125)
 
-def moveServo(servoNumber, degreeValue):
-    if degreeValue == 0:  # Exits function if the degree value is not valid
-        return False
-    pwm.setPWM(servoNumber, 0, degreeValue)
-    return True
+
 
 # Called to have turtle begin startup routine
 def bootup():
@@ -35,55 +31,55 @@ def bootup():
 
 # Called to have turtle lay on belly
 def shutdown():
-    frontLeftLeg.move(0, 90, 45)
-    frontRightLeg.move(0, 90, 45)
-    backLeftLeg.move(0, 90, 45)
-    backRightLeg.move(0, 90, 45)
+    frontLeftLeg.move(0, 90, 60, 0)
+    frontRightLeg.move(0, 90, 60, 0)
+    backLeftLeg.move(0, 90, 60, 0)
+    backRightLeg.move(0, 90, 60, 0)
 
 # Called to set the turtle's operating height
 def setHeight(heightValue):
     if heightValue == 0:
-        frontLeftLeg.move(0, 30, 30)
-        frontRightLeg.move(0, 30, 30)
-        backLeftLeg.move(0, 30, 30)
-        backRightLeg.move(0, 30, 30)
+        frontLeftLeg.move(0, 30, 30, 0)
+        frontRightLeg.move(0, 30, 30, 0)
+        backLeftLeg.move(0, 30, 30, 0)
+        backRightLeg.move(0, 30, 30, 0)
     elif heightValue == 1:
-        frontLeftLeg.move(0, 0, -90)
-        frontRightLeg.move(0, 0, -90)
-        backLeftLeg.move(0, 0, -90)
-        backRightLeg.move(0, 0, -90)
+        frontLeftLeg.move(0, 0, 0, 0)
+        frontRightLeg.move(0, 0, 0, 0)
+        backLeftLeg.move(0, 0, 0, 0)
+        backRightLeg.move(0, 0, 0, 0)
     elif heightValue == 2:
-        standup()
-        frontLeftLeg.move(0, -90, -90)
-        frontRightLeg.move(0, -90, -90)
-        backLeftLeg.move(0, -90, -90)
-        backRightLeg.move(0, -90, -90)
+        #standup()
+        frontLeftLeg.move(0, -90, -90, 0)
+        frontRightLeg.move(0, -90, -90, 0)
+        backLeftLeg.move(0, -90, -90, 0)
+        backRightLeg.move(0, -90, -90, 0)
 
 def standup():
-    frontLeftLeg.move(0, 75, 75)
-    frontRightLeg.move(0, 75, 75)
-    backLeftLeg.move(0, 75, 75)
-    backRightLeg.move(0, 75, 75)
+    frontLeftLeg.move(0, 75, 75, 0)
+    frontRightLeg.move(0, 75, 75, 0)
+    backLeftLeg.move(0, 75, 75, 0)
+    backRightLeg.move(0, 75, 75, 0)
     time.sleep(.15)
-    frontLeftLeg.move(0, -30, 0)
-    frontRightLeg.move(0, -30, 0)
-    backLeftLeg.move(0, -30, 0)
-    backRightLeg.move(0, -30, 0)
+    frontLeftLeg.move(0, -30, 0, 0)
+    frontRightLeg.move(0, -30, 0, 0)
+    backLeftLeg.move(0, -30, 0, 0)
+    backRightLeg.move(0, -30, 0, 0)
     time.sleep(.15)
-    frontLeftLeg.move(0, 0, -15)
-    frontRightLeg.move(0, 0, -15)
-    backLeftLeg.move(0, 0, -15)
-    backRightLeg.move(0, 0, -15)
+    frontLeftLeg.move(0, 0, -15, 0)
+    frontRightLeg.move(0, 0, -15, 0)
+    backLeftLeg.move(0, 0, -15, 0)
+    backRightLeg.move(0, 0, -15, 0)
     time.sleep(.15)
-    frontLeftLeg.move(0, -60, -60)
-    frontRightLeg.move(0, -60, -60)
-    backLeftLeg.move(0, -60, -60)
-    backRightLeg.move(0, -60, -60)
+    frontLeftLeg.move(0, -60, -60, 0)
+    frontRightLeg.move(0, -60, -60, 0)
+    backLeftLeg.move(0, -60, -60, 0)
+    backRightLeg.move(0, -60, -60, 0)
     time.sleep(.2)
-    frontLeftLeg.move(0, -90, 0)
-    frontRightLeg.move(0, -90, 0)
-    backLeftLeg.move(0, -90, 0)
-    backRightLeg.move(0, -90, 0)
+    frontLeftLeg.move(0, -90, 0, 0)
+    frontRightLeg.move(0, -90, 0, 0)
+    backLeftLeg.move(0, -90, 0, 0)
+    backRightLeg.move(0, -90, 0, 0)
     time.sleep(.125)
 
 while not joy.connected():
@@ -140,12 +136,21 @@ while joy.connected():
                 time.sleep(.1)
 
     # The face buttons are currently used for testing purposes
-    elif joy.X():
-        continue
     elif joy.A():
-        continue
+        frontLeftLeg.move(0, 0, 0, 0)
+        frontRightLeg.move(0, 0, 0, 0)
+        backLeftLeg.move(0, 0, 0, 0)
+        backRightLeg.move(0, 0, 0, 0)
+    elif joy.X():
+        frontLeftLeg.move(0, 60, 0, 0)
+        frontRightLeg.move(0, 60, 0, 0)
+        backLeftLeg.move(0, 60, 0, 0)
+        backRightLeg.move(0, 60, 0, 0)
     elif joy.B():
-        continue
+        frontLeftLeg.move(0, 90, 0, 0)
+        frontRightLeg.move(0, 90, 0, 0)
+        backLeftLeg.move(0, 90, 0, 0)
+        backRightLeg.move(0, 90, 0, 0)
     elif joy.Y():
         continue
 
