@@ -1,6 +1,8 @@
+import json
 from req_libraries.Adafruit_PWM_Servo_Driver import PWM
 from req_libraries.xbox import Joystick
 from leg import Leg
+from algoSet import AlgoSet
 
 ### KEEPING FOR REF ###
 #servo0 = 150  # 0 degrees Min pulse length out of 4096
@@ -39,18 +41,29 @@ fr1 =  9
 fr2 = 10
 fr3 = 11
 
-heightDirections = [1, 1, -1]
-heightAngles = [30, 0, 90]
-
 frontLeftLeg = Leg(fl1, fl2, fl3, True)
 frontRightLeg = Leg(fr1, fr2, fr3, False)
 backLeftLeg = Leg(bl1, bl2, bl3, True)
 backRightLeg = Leg(br1, br2, br3, False)
-
+algoSet = AlgoSet()
 
 def init():
-    print "Test"
     #tweekValues()
+    populateAlgoSet()
+
+def populateAlgoSet():
+    data = None
+    with open('algos.json') as json_file:  
+        data = json.load(json_file)
+
+    for p in data:
+        moveName = None
+        positionSet = []
+
+        moveName =  p['move_name']
+        for i in range(len(p['servo_positions'])):
+            positionSet.append(p['servo_positions'][i])
+        algoSet.addAlgo(moveName, positionSet)
 
 #def tweekValues():
     #frontLeftLeg.tweekValue(2, 180, 640)

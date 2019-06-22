@@ -15,12 +15,10 @@ class Leg:
         self.fillDefaultArray(self.elbowAngles)
         self.fillDefaultArray(self.wristAngles)
         if leftSideOfBody:
-            self.shoulderAngles = self.shoulderAngles[::-1]
             self.elbowAngles = self.elbowAngles[::-1]
             self.wristAngles = self.wristAngles[::-1]
-        #elif rightSideOfBody == True:
-            #self.elbowAngles = self.elbowAngles[::-1]
-            #self.wristAngles = self.wristAngles[::-1]
+        else:
+            self.shoulderAngles = self.shoulderAngles[::-1]
 
         self.shoulderServoNumber = shoulderServoNumber
         self.elbowServoNumber = elbowServoNumber
@@ -41,7 +39,7 @@ class Leg:
         if (wristAngle != "current"):
             if config.moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
                 self.wristAngle = wristAngle
-        time.sleep(sleepTime)
+        time.sleep(sleepTime / 1000)
 
     def fillDefaultArray(self, currArray):
         for x in range(0, 181):

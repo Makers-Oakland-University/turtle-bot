@@ -3,10 +3,9 @@ import array
 import subprocess
 
 import config
-from config import pwm, joy
+from config import joy
 from config import height, mode
-from config import heightDirections, heightAngles
-from config import frontLeftLeg, frontRightLeg, backLeftLeg, backRightLeg
+from config import algoSet
 
 
 def fmtFloat(n):
@@ -21,8 +20,6 @@ def findLeftRegion():
     print(mode)
     time.sleep(.125)
 
-
-
 # Called to have turtle begin startup routine
 def bootup():
     config.init()
@@ -31,56 +28,17 @@ def bootup():
 
 # Called to have turtle lay on belly
 def shutdown():
-    frontLeftLeg.move(0, 90, 60, 0)
-    frontRightLeg.move(0, 90, 60, 0)
-    backLeftLeg.move(0, 90, 60, 0)
-    backRightLeg.move(0, 90, 60, 0)
+    algoSet.run("shutdown")
 
 # Called to set the turtle's operating height
 def setHeight(heightValue):
     if heightValue == 0:
-        frontLeftLeg.move(0, 30, 30, 0)
-        frontRightLeg.move(0, 30, 30, 0)
-        backLeftLeg.move(0, 30, 30, 0)
-        backRightLeg.move(0, 30, 30, 0)
+        algoSet.run("set_low_height")
     elif heightValue == 1:
-        frontLeftLeg.move(0, 0, 0, 0)
-        frontRightLeg.move(0, 0, 0, 0)
-        backLeftLeg.move(0, 0, 0, 0)
-        backRightLeg.move(0, 0, 0, 0)
+        algoSet.run("set_reg_height")
     elif heightValue == 2:
-        #standup()
-        frontLeftLeg.move(0, -90, -90, 0)
-        frontRightLeg.move(0, -90, -90, 0)
-        backLeftLeg.move(0, -90, -90, 0)
-        backRightLeg.move(0, -90, -90, 0)
-
-def standup():
-    frontLeftLeg.move(0, 75, 75, 0)
-    frontRightLeg.move(0, 75, 75, 0)
-    backLeftLeg.move(0, 75, 75, 0)
-    backRightLeg.move(0, 75, 75, 0)
-    time.sleep(.15)
-    frontLeftLeg.move(0, -30, 0, 0)
-    frontRightLeg.move(0, -30, 0, 0)
-    backLeftLeg.move(0, -30, 0, 0)
-    backRightLeg.move(0, -30, 0, 0)
-    time.sleep(.15)
-    frontLeftLeg.move(0, 0, -15, 0)
-    frontRightLeg.move(0, 0, -15, 0)
-    backLeftLeg.move(0, 0, -15, 0)
-    backRightLeg.move(0, 0, -15, 0)
-    time.sleep(.15)
-    frontLeftLeg.move(0, -60, -60, 0)
-    frontRightLeg.move(0, -60, -60, 0)
-    backLeftLeg.move(0, -60, -60, 0)
-    backRightLeg.move(0, -60, -60, 0)
-    time.sleep(.2)
-    frontLeftLeg.move(0, -90, 0, 0)
-    frontRightLeg.move(0, -90, 0, 0)
-    backLeftLeg.move(0, -90, 0, 0)
-    backRightLeg.move(0, -90, 0, 0)
-    time.sleep(.125)
+        algoSet.run("standup")
+        algoSet.run("set_max_height")
 
 while not joy.connected():
     time.sleep(1)
@@ -91,7 +49,7 @@ while joy.connected():
     if joy.Back():
         break
     elif joy.Start():
-        standup()
+        algoSet.run("standup")
 
     elif joy.leftY() == 1:
         continue
@@ -137,20 +95,11 @@ while joy.connected():
 
     # The face buttons are currently used for testing purposes
     elif joy.A():
-        frontLeftLeg.move(0, 0, 0, 0)
-        frontRightLeg.move(0, 0, 0, 0)
-        backLeftLeg.move(0, 0, 0, 0)
-        backRightLeg.move(0, 0, 0, 0)
+        continue
     elif joy.X():
-        frontLeftLeg.move(0, 60, 0, 0)
-        frontRightLeg.move(0, 60, 0, 0)
-        backLeftLeg.move(0, 60, 0, 0)
-        backRightLeg.move(0, 60, 0, 0)
+        continue
     elif joy.B():
-        frontLeftLeg.move(0, 90, 0, 0)
-        frontRightLeg.move(0, 90, 0, 0)
-        backLeftLeg.move(0, 90, 0, 0)
-        backRightLeg.move(0, 90, 0, 0)
+        continue
     elif joy.Y():
         continue
 
