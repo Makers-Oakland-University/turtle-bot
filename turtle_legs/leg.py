@@ -29,7 +29,7 @@ class Leg:
         self.wristAngle = 0
         self.leftSideOfBody = leftSideOfBody
 
-    def move(self, shoulderAngle, elbowAngle, wristAngle, sleepTime):
+    def move(self, shoulderAngle, elbowAngle, wristAngle):
         if (shoulderAngle != "current"):
             if config.moveServo(self.shoulderServoNumber, self.shoulderAngles[90 + shoulderAngle]):
                 self.shoulderAngle = shoulderAngle
@@ -39,7 +39,6 @@ class Leg:
         if (wristAngle != "current"):
             if config.moveServo(self.wristServoNumber, self.wristAngles[90 + wristAngle]):
                 self.wristAngle = wristAngle
-        time.sleep(sleepTime / 1000)
 
     def fillDefaultArray(self, currArray):
         for x in range(0, 181):

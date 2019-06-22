@@ -45,7 +45,7 @@ frontLeftLeg = Leg(fl1, fl2, fl3, True)
 frontRightLeg = Leg(fr1, fr2, fr3, False)
 backLeftLeg = Leg(bl1, bl2, bl3, True)
 backRightLeg = Leg(br1, br2, br3, False)
-algoSet = AlgoSet()
+algos = AlgoSet(frontLeftLeg, frontRightLeg, backLeftLeg, backRightLeg)
 
 def init():
     #tweekValues()
@@ -63,7 +63,7 @@ def populateAlgoSet():
         moveName =  p['move_name']
         for i in range(len(p['servo_positions'])):
             positionSet.append(p['servo_positions'][i])
-        algoSet.addAlgo(moveName, positionSet)
+        algos.addAlgo(moveName, positionSet)
 
 #def tweekValues():
     #frontLeftLeg.tweekValue(2, 180, 640)

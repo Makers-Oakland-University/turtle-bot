@@ -1,12 +1,16 @@
+from time import sleep
 from algo import Algo
-from config import frontLeftLeg, frontRightLeg, backLeftLeg, backRightLeg
 
 tempMoveList = []
 foundAlgo = False
 
 class AlgoSet:
-    def __init__(self):
+    def __init__(self, frontLeftLeg, frontRightLeg, backLeftLeg, backRightLeg):
         self.algoSet = []
+        self.frontLeftLeg = frontLeftLeg
+        self.frontRightLeg = frontRightLeg
+        self.backLeftLeg = backLeftLeg
+        self.backRightLeg = backRightLeg
 
     def addAlgo(self, algoName, algoPositions):
         self.algoSet.append(Algo(algoName, algoPositions))
@@ -19,11 +23,13 @@ class AlgoSet:
         if foundAlgo:
             for move in tempMoveList:
                 if move[0] == 'fl':
-                    frontLeftLeg.move(move[1], move[2], move[3], move[4])
+                    self.frontLeftLeg.move(move[1], move[2], move[3])
                 elif move[0] == 'fr':
-                    frontRightLeg.move(move[1], move[2], move[3], move[4])
+                    self.frontRightLeg.move(move[1], move[2], move[3])
                 elif move[0] == 'bl':
-                    backLeftLeg.move(move[1], move[2], move[3], move[4])
+                    self.backLeftLeg.move(move[1], move[2], move[3])
                 elif move[0] == 'br':
-                    backRightLeg.move(move[1], move[2], move[3], move[4])
+                    self.backRightLeg.move(move[1], move[2], move[3])
+                elif move[0] == 'sleep':
+                    sleep(move[1]/1000)
             foundAlgo = False

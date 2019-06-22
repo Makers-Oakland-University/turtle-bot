@@ -1,11 +1,11 @@
-import time
+from time import sleep
 import array
 import subprocess
 
 import config
 from config import joy
 from config import height, mode
-from config import algoSet
+from config import algos
 
 
 def fmtFloat(n):
@@ -18,7 +18,7 @@ def findLeftRegion():
     print("Y-Axis: ", leftY)
     print(height)
     print(mode)
-    time.sleep(.125)
+    sleep(.125)
 
 # Called to have turtle begin startup routine
 def bootup():
@@ -28,20 +28,21 @@ def bootup():
 
 # Called to have turtle lay on belly
 def shutdown():
-    algoSet.run("shutdown")
+    algos.run("shutdown")
 
 # Called to set the turtle's operating height
 def setHeight(heightValue):
     if heightValue == 0:
-        algoSet.run("set_low_height")
+        algos.run("set_low_height")
     elif heightValue == 1:
-        algoSet.run("set_reg_height")
+        algos.run("set_reg_height")
     elif heightValue == 2:
-        algoSet.run("standup")
-        algoSet.run("set_max_height")
+        algos.run("standup")
+        sleep(.5)
+        algos.run("set_max_height")
 
 while not joy.connected():
-    time.sleep(1)
+    sleep(1)
 
 bootup()
 while joy.connected():
@@ -49,8 +50,8 @@ while joy.connected():
     if joy.Back():
         break
     elif joy.Start():
-        algoSet.run("standup")
-
+        algos.run("standup")
+        
     elif joy.leftY() == 1:
         continue
     elif joy.leftY() == -1:
