@@ -1,4 +1,4 @@
-function PushButton(){
+function AngryEyes(){
     setTimeout(function(){
         document.getElementById("circleLeft").classList.remove('errorGlowLeft');
         document.getElementById("circleRight").classList.remove('errorGlowRight');

@@ -1,3 +1,8 @@
+html, body {
+    overflow-x : hidden;
+    background-color: #1a1c1d;
+}
+
 .circleLeft {
     height: 50px;
     width: 75px;
