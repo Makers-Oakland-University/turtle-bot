@@ -14,13 +14,16 @@
     </head>
 
     <body>
-        <div class="container" style="height: 100%;">
-            <div class="d-flex flex-wrap justify-content-center align-content-center" style="height: 100%;">
+        <div id="screenDoor" class="d-flex flex-column"></div>
+
+        <div class="container d-flex flex-wrap justify-content-center align-content-center" style="height: 100%;">
+            <div id="eyeContainer" class="d-flex flex-wrap justify-content-center align-content-center">
                 <div id="circleLeft" class="circleLeft"></div>
                 <div id="spacer"></div>
                 <div id="circleRight" class="circleRight"></div>
             </div>
         </div>
+
         <div id="actionBar" class="mb-3 container fixed-bottom">
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-outline-danger shadow-sm mr-3 ml-3" onclick="AngryEyes()"><span>Angry Eyes</span></button>
