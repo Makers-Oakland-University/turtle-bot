@@ -1,0 +1,13 @@
+.blinkLeft{
+    animation: blink 1s;
+    animation-iteration-count: 1;
+}
+
+.blinkRight{
+    animation: blink 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes blink {
+    50% { height: 3px; }
+}
